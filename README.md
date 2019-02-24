@@ -4,6 +4,8 @@ A tool which produces high-level documentation (e.g. Flowcharts) for common task
 
 This tool is intended to provide the answer to questions like 'What happens when you add a product to the basket?', 'What happens to stock levels during checkout?', etc
 
+See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for embryonic experiments in this regard.
+
 * [Watson Safari](#watson-safari)
   * [Thoughts](#thoughts)
   * [Considerations](#considerations)
@@ -52,26 +54,34 @@ This tool is intended to provide the answer to questions like 'What happens when
 
 ## Objectives
 
-* [x] Find a way to record every line of every PHP file that is executed
-    * Figure out which tool would be best
-        * Decision: Xdebug with Code and Branch Coverage
-    * Figure out which tracefile format would be best for parsing
-        * Decision: Use Xdebug's code coverage array format. This is different to the Xdebug tracer or profiler features.
-* [x] Use the prepend/append scripts and 'cover' the execution of the simplest possible `bin/magento` 'Hello world' command        
+- [x] Find a way to record every line of every PHP file that is executed
+    - Figure out which tool would be best
+        - Decision: Xdebug with Code and Branch Coverage
+    - Figure out which tracefile format would be best for parsing
+        - Decision: Use Xdebug's code coverage array format. This is different to the Xdebug tracer or profiler features.
+- [x] Use the prepend/append scripts and 'cover' the execution of the simplest possible `bin/magento` 'Hello world' command        
+- Parse the output of `xdebug_get_code_coverage()`
+- Which flags to use? Experiment with flags passed to `xdebug_start_code_coverage()`
+    - All three possible flags (`XDEBUG_CC_DEAD_CODE | XDEBUG_CC_UNUSED | XDEBUG_CC_BRANCH_CHECK`) must be used to generate all the information we need
+- Build a tool which can create the dot files for a flowchart by parsing the output of a really simple PHP script
+    - Using Xdebug's `magento/branch-coverage-to-dot.php` as a starting point
+    - Then move onto parsing the simplest possible Magento 2 script, e.g. A `bin/magento` command
 
 ## Considerations
 
-* Tool should be able to be run on any codebase, so the above can be generated
-* All functions above should be programmable, so charts, documentation, etc can be generated automatically without human intervention
+- Tool should be able to be run on any codebase, so the above can be generated
+- All functions above should be programmable, so charts, documentation, etc can be generated automatically without human intervention
+- Added a switch to toggle between generating DOT graphs and HTML table
+    - For the HTML version, link each line number to the line number of the actual file, otherwise it'll be much harder to interpret what the table is showing
 
 ## Usage instructions
 
-* Generate a code coverage array using the command:
+- Generate a code coverage array using the command:
 ```bash
 $ php71 -dauto_prepend_file=/var/www/html/watson/watson-safari/xdebug_code_coverage_auto_prepend_file.php -dauto_append_file=/var/www/html/watson/watson-safari/xdebug_code_coverage_auto_append_file.php bin/magento examples:hello-world
 ```
 
-* Pass that to the `bin/magento` parser command:
+- Pass that to the `bin/magento` parser command:
 ```bash
 # Coming soon
 ```
@@ -125,7 +135,7 @@ Command line browser for cachegrind files
 #### PhpStorm: Tools > Analyze Xdebug Profile Snapshot...
 See https://www.jetbrains.com/help/phpstorm/analyzing-xdebug-profiling-data.html
 
-* What do these tools do? How could they be useful to us?
+- What do these tools do? How could they be useful to us?
 
 #### DePHPend
 https://dephpend.com/
@@ -188,7 +198,7 @@ https://github.com/magespecialist/mage-chrome-toolbar
 
 Google Chrome extension and Magento 1/2 extension
 
-* How does it gather debugging/profiling data from Magento 2?
+- How does it gather debugging/profiling data from Magento 2?
 
 #### PHP-Parser
 https://github.com/nikic/PHP-Parser
