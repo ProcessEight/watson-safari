@@ -211,6 +211,11 @@ https://yuml.me/
 
 Tool which allows generating UML diagrams in-browser. Also exposes REST API for creating UML diagrams.
 
+#### GoJS
+https://gojs.net/latest/index.html
+
+Library which facilitates generating a wide array of graphs from datasets.
+
 ### Producing/formatting debugging data
 
 #### Magento DevTools by Mage Specialist
