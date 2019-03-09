@@ -52,7 +52,7 @@ See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for em
     * Produce high-level overview of execution flow (possibly in form of flowchart, or just plain text description)
     * Whenever a new class is called, or a class outside the current module is called, add a new element to the flow chart
 
-## Objectives
+## Objectives (Tasks are now monitored in github)
 
 - [x] Find a way to record every line of every PHP file that is executed
     - Figure out which tool would be best
@@ -60,10 +60,10 @@ See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for em
     - Figure out which tracefile format would be best for parsing
         - Decision: Use Xdebug's code coverage array format. This is different to the Xdebug tracer or profiler features.
 - [x] Use the prepend/append scripts and 'cover' the execution of the simplest possible `bin/magento` 'Hello world' command        
-- Parse the output of `xdebug_get_code_coverage()`
-- Which flags to use? Experiment with flags passed to `xdebug_start_code_coverage()`
+- [x] Parse the output of `xdebug_get_code_coverage()`
+- [x] Which flags to use? Experiment with flags passed to `xdebug_start_code_coverage()`
     - All three possible flags (`XDEBUG_CC_DEAD_CODE | XDEBUG_CC_UNUSED | XDEBUG_CC_BRANCH_CHECK`) must be used to generate all the information we need
-- Build a tool which can create the dot files for a flowchart by parsing the output of a really simple PHP script
+- [x] Build a tool which can create the dot files for a flowchart by parsing the output of a really simple PHP script
     - Using Xdebug's `magento/branch-coverage-to-dot.php` as a starting point
     - Then move onto parsing the simplest possible Magento 2 script, e.g. A `bin/magento` command
 
@@ -74,17 +74,39 @@ See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for em
 - Added a switch to toggle between generating DOT graphs and HTML table
     - For the HTML version, link each line number to the line number of the actual file, otherwise it'll be much harder to interpret what the table is showing
 
+## Overview
+
+This tool parses the output of Xdebug's Code and Branch Coverage feature to produce a visual representation (an indented table at the moment) of the execution path of a particular request.
+
 ## Usage instructions
 
-- Generate a code coverage array using the command:
+- Generate the code coverage output using the command:
 ```bash
 $ php71 -dauto_prepend_file=/var/www/html/watson/watson-safari/xdebug_code_coverage_auto_prepend_file.php -dauto_append_file=/var/www/html/watson/watson-safari/xdebug_code_coverage_auto_append_file.php bin/magento examples:hello-world
 ```
 
-- Pass that to the `bin/magento` parser command:
+- Pass that to the desired parser command (this particular command produces a HTML page):
 ```bash
-# Coming soon
+php71 -f code-coverage-to-html.php
 ```
+
+## How it works
+
+The code coverage data is generated as a PHP array and written to the file `code-coverage-output.php` in `xdebug_code_coverage_auto_append_file.php:20`.
+
+This array can then be processed by an output formatter:
+
+HTML:
+```bash
+php71 -f code-coverage-to-html.php
+```
+
+DOT: 
+```bash
+php71 -f code-coverage-to-dot.php
+``` 
+
+Both are highly experimental and not guaranteed to work.
 
 ## Tools
 
