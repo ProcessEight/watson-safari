@@ -1,33 +1,14 @@
-# Watson Safari
+# Watson Pathfinder
 
 A tool which produces high-level documentation (e.g. Flowcharts) for common tasks, e.g. Adding products to basket, checking stock levels, etc.
 
 This tool is intended to provide the answer to questions like 'What happens when you add a product to the basket?', 'What happens to stock levels during checkout?', etc
 
-See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for embryonic experiments in this regard.
+This tool uses Xdebug Function Tracing to produce the trace files which it can then parse.
 
-* [Watson Safari](#watson-safari)
-  * [Thoughts](#thoughts)
-  * [Considerations](#considerations)
-  * [Tools](#tools)
-     * [PHP-Parser](#php-parser)
-     * [Xdebug and Code Coverage](#xdebug-and-code-coverage)
-     * [xdebugtoolkit](#xdebugtoolkit)
-     * [Valgrind/callgrind](#valgrindcallgrind)
-     * [GrindKit](#grindkit)
-     * [PHP_CachegrindParser](#php_cachegrindparser)
-     * [grind-pilot](#grind-pilot)
-     * [New Relic, Blackfire.io](#new-relic-blackfireio)
-     * [OpenTrace](#opentrace)
-     * [Reflection](#reflection)
-     * [PhpStorm: Tools &gt; Analyze Stack Trace...](#phpstorm-tools--analyze-stack-trace)
-     * [PhpStorm: Tools &gt; Analyze Xdebug Profile Snapshot...](#phpstorm-tools--analyze-xdebug-profile-snapshot)
-     * [DePHPend](#dephpend)
-     * [mpmd](#mpmd)
-     * [GraphvizFiddle](#graphvizfiddle)
-     * [yUML](#yuml)
-     * [Yireo ExtensionChecker](#yireo-extensionchecker)
-     * [Rector](#rector)
+See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for embryonic experiments which use the Xdebug code coverage feature instead.
+
+The 'Tools' section has been moved to https://github.com/ProcessEight/Watson 
 
 ## Thoughts
 
@@ -52,21 +33,6 @@ See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for em
     * Produce high-level overview of execution flow (possibly in form of flowchart, or just plain text description)
     * Whenever a new class is called, or a class outside the current module is called, add a new element to the flow chart
 
-## Objectives (Tasks are now monitored in github)
-
-- [x] Find a way to record every line of every PHP file that is executed
-    - Figure out which tool would be best
-        - Decision: Xdebug with Code and Branch Coverage
-    - Figure out which tracefile format would be best for parsing
-        - Decision: Use Xdebug's code coverage array format. This is different to the Xdebug tracer or profiler features.
-- [x] Use the prepend/append scripts and 'cover' the execution of the simplest possible `bin/magento` 'Hello world' command        
-- [x] Parse the output of `xdebug_get_code_coverage()`
-- [x] Which flags to use? Experiment with flags passed to `xdebug_start_code_coverage()`
-    - All three possible flags (`XDEBUG_CC_DEAD_CODE | XDEBUG_CC_UNUSED | XDEBUG_CC_BRANCH_CHECK`) must be used to generate all the information we need
-- [x] Build a tool which can create the dot files for a flowchart by parsing the output of a really simple PHP script
-    - Using Xdebug's `magento/branch-coverage-to-dot.php` as a starting point
-    - Then move onto parsing the simplest possible Magento 2 script, e.g. A `bin/magento` command
-
 ## Considerations
 
 - Tool should be able to be run on any codebase, so the above can be generated
@@ -76,176 +42,8 @@ See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for em
 
 ## Overview
 
-This tool parses the output of Xdebug's Code and Branch Coverage feature to produce a visual representation (an indented table at the moment) of the execution path of a particular request.
+We are not interested in any third-party libraries, or tools used in the intialisation of the request we're tracing, so these are filtered out by Xdebug.
 
-## Usage instructions
+The filtering is configured in `xdebug_filter_trace_auto_prepend_file.php`.
 
-- Generate the code coverage output using the command:
-```bash
-$ php71 -dauto_prepend_file=/var/www/html/watson/watson-safari/xdebug_code_coverage_auto_prepend_file.php -dauto_append_file=/var/www/html/watson/watson-safari/xdebug_code_coverage_auto_append_file.php bin/magento examples:hello-world
-```
-
-- Pass that to the desired parser command (this particular command produces a HTML page):
-```bash
-php71 -f code-coverage-to-html.php
-```
-
-## How it works
-
-The code coverage data is generated as a PHP array and written to the file `code-coverage-output.php` in `xdebug_code_coverage_auto_append_file.php:20`.
-
-This array can then be processed by an output formatter:
-
-HTML:
-```bash
-php71 -f code-coverage-to-html.php
-```
-
-DOT: 
-```bash
-php71 -f code-coverage-to-dot.php
-``` 
-
-Both are highly experimental and not guaranteed to work.
-
-## Tools
-
-### Generating trace files
-
-### Xdebug and Code Coverage
-https://derickrethans.nl/path-branch-coverage.html
-
-https://xdebug.org/docs/code_coverage
-
-PHP extension for debugging, generating cachegrind profiler files and code coverage statistics and much more
-
-#### Valgrind/callgrind
-http://valgrind.org/docs/manual/cl-manual.html
-Callgrind: a call-graph generating cache and branch prediction profiler
-
-#### New Relic, Blackfire.io
-How can they help with the Projects above?
-
-#### OpenTrace
-https://github.com/opentracing/opentracing-php
-
-Platform-agnostic Application Performance Measurement (APM) tool to track requests or 'transactions' across the different langages, environments, etc that make up a complete request.
-
-### Parsing trace files
-
-#### xdebugtoolkit
-https://github.com/alexeykupershtokh/xdebugtoolkit
-
-A toolkit for splitting, aggregating, analyzing and visualizing xdebug cachegrind files.
-
-#### GrindKit
-https://github.com/c9s/GrindKit
-
-A tool for reading cachegrind files in PHP.
-
-#### PHP_CachegrindParser 
-https://github.com/mayflower/PHP_CachegrindParser
-
-A parser for cachegrind files, generating an xml format for CI usage and graphviz .dot files
-
-#### grind-pilot
-https://github.com/troelskn/grind-pilot
-
-Command line browser for cachegrind files
-
-#### PhpStorm: Tools > Analyze Stack Trace...
-#### PhpStorm: Tools > Analyze Xdebug Profile Snapshot...
-See https://www.jetbrains.com/help/phpstorm/analyzing-xdebug-profiling-data.html
-
-- What do these tools do? How could they be useful to us?
-
-#### DePHPend
-https://dephpend.com/
-
-A tool which analyses PHP source code to produce various outputs.
-
-dePHPend analyses your app and attempts to find everything you depend on.
-
-With this information you can:
-
-- get a quick overview of how an application is structured
-- start refactoring where it's needed the most
-- track architecture violations (maybe your view shouldn't be telling the model what to do?)
-- find out why your changes are breaking tests
-
-#### mpmd
-https://github.com/AOEpeople/mpmd
-
-n98-magerun (for Magento 1) plugin which produces dependency graphs in the `DOT` language [directed] graph syntax. These can then be translated into graphs in various formats, e.g. SVG, PDF, etc.
-
-#### GraphvizFiddle
-https://stamm-wilbrandt.de/GraphvizFiddle/
-
-A tool for visualising graphs written in the `DOT` language syntax
-
-E.g: Try pasting the following:
-```dot
-digraph callgraph {
-
-    splines=false;
-    rankdir=LR;
-    edge[arrowhead=vee, arrowtail=inv, arrowsize=.7, color="#dddddd"];
-    node [fontname="verdana", shape=plaintext, style="filled", fillcolor="#dddddd"];
-    fontname="Verdana";
-
-    Mage_Cms -> Mage_Core;
-    Mage_Cms -> Mage_Page;
-    Mage_Cms -> Mage_Adminhtml;
-    Mage_Cms -> Mage_Widget;
-    Mage_Cms -> Mage_Admin;
-}
-```
-
-This `DOT` code was generated using the command:
-
-```bash
-./n98-magerun.phar mpmd:dependencycheck:graph:module app/code/core/Mage/Cms/
-```
-#### yUML
-https://yuml.me/
-
-Tool which allows generating UML diagrams in-browser. Also exposes REST API for creating UML diagrams.
-
-#### GoJS
-https://gojs.net/latest/index.html
-
-Library which facilitates generating a wide array of graphs from datasets.
-
-### Producing/formatting debugging data
-
-#### Magento DevTools by Mage Specialist
-https://github.com/magespecialist/m2-MSP_DevTools
-
-https://github.com/magespecialist/mage-chrome-toolbar
-
-Google Chrome extension and Magento 1/2 extension
-
-- How does it gather debugging/profiling data from Magento 2?
-
-#### PHP-Parser
-https://github.com/nikic/PHP-Parser
-
-A PHP source code parser, itself written in PHP, which can convert PHP source code to an AST and back again.
-
-#### Reflection
-https://secure.php.net/reflection
-
-A part of the PHP core which allows introspection of PHP source code from within PHP
-
-PHP 7 comes with a complete reflection API that adds the ability to reverse-engineer classes, interfaces, functions, methods and extensions. 
-
-Additionally, the reflection API offers ways to retrieve doc comments for functions, classes and methods.
-
-#### Yireo ExtensionChecker
-https://github.com/yireo/Yireo_ExtensionChecker
-A CLI tool which tokenises PHP to check the validity of code used in Magento extensions
-
-#### Rector
-https://github.com/rectorphp/rector
-
-A CLI tool which can refactor/rewrite code by manipulating the AST
+The filtering using a whitelisting approach, so only files in Magento-specific directories are added to the trace file.
