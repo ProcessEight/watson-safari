@@ -10,6 +10,8 @@ See also https://github.com/ProcessEight/Watson-Code-Coverage-Experiments for em
 
 The 'Tools' section has been moved to https://github.com/ProcessEight/Watson 
 
+This tool is different to Project 3 because the purpose of it is primarily to expose the route taken through the code, without going into detail about the things like plugins, events or SQL queries which may be triggered along the way.
+
 ## Thoughts
 
 * Generate trace using Xdebug Profiler or similar
@@ -40,10 +42,12 @@ The 'Tools' section has been moved to https://github.com/ProcessEight/Watson
 - Added a switch to toggle between generating DOT graphs and HTML table
     - For the HTML version, link each line number to the line number of the actual file, otherwise it'll be much harder to interpret what the table is showing
 
-## Overview
+## How it works
+
+### Trace filtering
 
 We are not interested in any third-party libraries, or tools used in the intialisation of the request we're tracing, so these are filtered out by Xdebug.
 
 The filtering is configured in `xdebug_filter_trace_auto_prepend_file.php`.
 
-The filtering using a whitelisting approach, so only files in Magento-specific directories are added to the trace file.
+The filtering uses a whitelisting approach, so only files in Magento-specific directories are added to the trace file.
