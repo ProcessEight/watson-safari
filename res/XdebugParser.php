@@ -44,33 +44,58 @@ class XdebugParser
     }
 
     /**
+     * Parse the Xdebug execution trace.
+     * See https://xdebug.org/docs/execution_trace#trace_format for a description of what each element of the parts array represents
+     *
      * @param $line
      */
     public function parseLine($line) : void
     {
         $parts = explode("\t", $line);
 
-        switch (@$parts[2]) {
+        $depth                 = $parts[0] ?? null;
+        $functionNumber        = $parts[1] ?? null;
+        $recordType            = $parts[2] ?? null;
+        $timeEntered           = $parts[3] ?? null;
+        $memoryUsage           = $parts[4] ?? null;
+        $functionName          = $parts[5] ?? null;
+        $userDefinedOrInternal = $parts[6] ?? null; // User defined (1) or internal (0)
+        $params                = $parts[7] ?? null;
+        $filename              = $parts[8] ?? null;
+        $lineNumber            = $parts[9] ?? null;
+
+        $skipList = ['include', 'include_once', 'require', 'require_once',];
+        if ($userDefinedOrInternal == 0 || in_array($functionName, $skipList)) {
+            return;
+        }
+        if (strpos($filename,'Interceptor') !== false) {
+            return;
+        }
+        if (strpos($filename,'Composer') !== false) {
+            return;
+        }
+
+        switch (@$recordType) {
             case '0': // Function enter
-                $this->functions[$parts[1]]['depth']      = (int)$parts[0];
-                $this->functions[$parts[1]]['time.enter'] = $parts[3];
-                $this->functions[$parts[1]]['name']       = $parts[5];
-                $this->functions[$parts[1]]['internal']   = $parts[6];
-                $this->functions[$parts[1]]['file']       = $parts[8];
-                $this->functions[$parts[1]]['line']       = $parts[9];
-                if ($parts[7]) {
-                    $this->functions[$parts[1]]['params'] = [$parts[7]];
+                $this->functions[$functionNumber]['depth']      = (int)$depth;
+                $this->functions[$functionNumber]['time.enter'] = $timeEntered;
+                $this->functions[$functionNumber]['name']       = $functionName;
+                $this->functions[$functionNumber]['internal']   = $userDefinedOrInternal;
+                $this->functions[$functionNumber]['file']       = $filename;
+                $this->functions[$functionNumber]['line']       = $lineNumber;
+                if ($params) {
+                    $this->functions[$functionNumber]['params'] = [$params];
                 }
 
                 // these are set later // Necessary to do this here?
-                $this->functions[$parts[1]]['return'] = '';
+                $this->functions[$functionNumber]['return'] = '';
                 break;
             case '1': // Function exit
-                $this->functions[$parts[1]]['time.exit'] = $parts[3];
-                $this->functions[$parts[1]]['time.diff'] = $this->functions[$parts[1]]['time.exit'] - $this->functions[$parts[1]]['time.enter'];
+                $this->functions[$functionNumber]['time.exit'] = $timeEntered;
+                $this->functions[$functionNumber]['time.diff'] = $this->functions[$functionNumber]['time.exit'] - $this->functions[$functionNumber]['time.enter'];
                 break;
             case 'R'; // Function return
-                $this->functions[$parts[1]]['return'] = $parts[5];
+                $this->functions[$functionNumber]['return'] = $functionName;
                 break;
         }
     }
@@ -84,9 +109,9 @@ class XdebugParser
     }
 
     /**
+     * @return string
      * @todo Add background color for each new depth level
      *
-     * @return string
      */
     public function getTraceHTML()
     {
@@ -116,8 +141,7 @@ class XdebugParser
 
             echo '<div class="f ' . $stripeClassName . '">';
             echo '<div class="func">';
-            $internalClassName = ($func['internal'] === "0") ? "internal" : "";
-            echo '<span class="name ' . $internalClassName . '">' . htmlspecialchars($func['name']) . '</span>';
+            echo '<span class="name ' . (($func['internal'] === "0") ? "internal" : "") . '">' . htmlspecialchars($func['name']) . '</span>';
             echo '</div>';
             echo '<div class="data">';
             echo '<span class="file" title="' . htmlspecialchars($func['file'] . ':' . $func['line']) . '">' . htmlspecialchars(basename($func['file']) . ':' . $func['line']) . '</span>';

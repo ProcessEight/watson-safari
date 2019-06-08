@@ -15,9 +15,9 @@ This tool is different to Project 3 because the purpose of it is primarily to ex
 ## Thoughts
 
 * Generate trace using Xdebug Profiler or similar
-* Create a new `bin/magento` command
-* Pass in a Xdebug Profiler tracefile
 * Parse the trace, with the following aims:
+    * Produce high-level overview of execution flow (possibly in form of flowchart, or just plain text description)
+    * Whenever a new class is called, or a class outside the current module is called, add a new element to the flow chart
     * Highlight extension points (public methods (for plugins), events)
     * Produce customisation reports:
         * Produce report of all third-party extensions (i.e. Extensions not present in a stock Magento install)
@@ -32,8 +32,8 @@ This tool is different to Project 3 because the purpose of it is primarily to ex
                 * Document the event name, variables passed in
         * All defined plugins
         * All preferences where a Magento core interface is implemented by a non-Magento class
-    * Produce high-level overview of execution flow (possibly in form of flowchart, or just plain text description)
-    * Whenever a new class is called, or a class outside the current module is called, add a new element to the flow chart
+* Create a new `magerun` command/web interface
+* Pass in a Xdebug Profiler tracefile
 
 ## Considerations
 
@@ -41,6 +41,18 @@ This tool is different to Project 3 because the purpose of it is primarily to ex
 - All functions above should be programmable, so charts, documentation, etc can be generated automatically without human intervention
 - Added a switch to toggle between generating DOT graphs and HTML table
     - For the HTML version, link each line number to the line number of the actual file, otherwise it'll be much harder to interpret what the table is showing
+
+## Usage
+
+- Generate the Xdebug trace file
+- Select it from the drop-down on http://watson-pathfinder.test/
+- Review the trace
+
+## To do
+
+- [ ] Modify the Xdebug trace generation to filter out request initialisation logic
+    - [ ] Create an example `bin/magento` command to do something basic, e.g. Output store view details
+    - [ ] Profile that using the new Xdebug filtering logic 
 
 ## How it works
 
