@@ -20,15 +20,15 @@ $(function () {
     $('#internal').change(function () {
         $('div.i').toggle();
     });
-    $('#highlighted').change(function () {
-        $('div.f').toggle();
-        $('div.f.highlight').show();
-    });
 
     /* Hide functions */
     $('span.name').click(function (e) {
         if (e.target !== this) return;
-        $("span.name:contains('" + $(this).text() + "')").closest('div.f').toggleClass('hide');
+
+        var $fn = $(this);
+        var name = $(this).text();
+        $("span.name:contains('"+name+"')").closest('div.f').toggleClass('hide');
+
         e.preventDefault();
         e.stopPropagation();
     });
@@ -36,8 +36,16 @@ $(function () {
     /* Mark important */
     $('span.time').click(function (e) {
         if (e.target !== this) return;
-        $(this).closest('div.f').toggleClass('highlight');
+
+        $(this).closest('div.f').toggleClass('mark');
+
         e.preventDefault();
         e.stopPropagation();
+    });
+
+    /* Hide internal funcs */
+    $('#marked').change(function(){
+        $('div.f').toggle();
+        $('div.f.mark').show();
     });
 });

@@ -11,9 +11,44 @@ class XdebugParser
     protected $handle;
 
     /**
+     * @var string[]
+     */
+    private $colours = [];
+
+    /**
      * @var array
      */
     protected $functions = [];
+
+    private $traceFormatFunctionEnterKeys = [
+        'level',
+        'function_number',
+        'record_type',
+        'time_index',
+        'memory_usage',
+        'function_name',
+        'user_defined_or_internal',
+        'include_require_filename',
+        'filename',
+        'line_number',
+    ];
+
+    private $traceFormatFunctionExitKeys = [
+        'level',
+        'function_number',
+        'record_type',
+        'time_index',
+        'memory_usage',
+    ];
+
+    private $traceFormatFunctionReturnKeys = [
+        'level',
+        'function_number',
+        'record_type',
+        'EMPTY_1',
+        'EMPTY_2',
+        'return_value',
+    ];
 
     /**
      * XdebugParser constructor.
@@ -28,6 +63,7 @@ class XdebugParser
         if (!$this->handle) {
             throw new Exception("Can't open '$fileName'");
         }
+        $this->colours = $this->initialiseRainbow();
     }
 
     /**
@@ -36,7 +72,7 @@ class XdebugParser
     public function parse()
     {
         while (!feof($this->handle)) {
-            $buffer = fgets($this->handle, 4096);
+            $buffer = fgets($this->handle);
             if ($buffer !== false) {
                 $this->parseLine($buffer);
             }
@@ -45,57 +81,40 @@ class XdebugParser
 
     /**
      * Parse the Xdebug execution trace.
-     * See https://xdebug.org/docs/execution_trace#trace_format for a description of what each element of the parts array represents
+     * See https://xdebug.org/docs/all_settings#trace_format for a description of what each element of the parts array represents
      *
      * @param $line
      */
     public function parseLine($line) : void
     {
         $parts = explode("\t", $line);
-
-        $depth                 = $parts[0] ?? null;
-        $functionNumber        = $parts[1] ?? null;
-        $recordType            = $parts[2] ?? null;
-        $timeEntered           = $parts[3] ?? null;
-        $memoryUsage           = $parts[4] ?? null;
-        $functionName          = $parts[5] ?? null;
-        $userDefinedOrInternal = $parts[6] ?? null; // User defined (1) or internal (0)
-        $params                = $parts[7] ?? null;
-        $filename              = $parts[8] ?? null;
-        $lineNumber            = $parts[9] ?? null;
-
-        $skipList = ['include', 'include_once', 'require', 'require_once',];
-        if ($userDefinedOrInternal == 0 || in_array($functionName, $skipList)) {
-            return;
-        }
-        if (strpos($filename,'Interceptor') !== false) {
-            return;
-        }
-        if (strpos($filename,'Composer') !== false) {
+        // Lines of precisely 5 parts represent the 'exit' record type
+        // Lines of longer than 5 parts represent the 'enter' record type
+        // Anything else should be ignored
+        // Filter out calls to PHP internal functions
+        // $parts[6]: user-defined (1) or internal function (0)
+        if (count($parts) < 5) {
             return;
         }
 
-        switch (@$recordType) {
-            case '0': // Function enter
-                $this->functions[$functionNumber]['depth']      = (int)$depth;
-                $this->functions[$functionNumber]['time.enter'] = $timeEntered;
-                $this->functions[$functionNumber]['name']       = $functionName;
-                $this->functions[$functionNumber]['internal']   = $userDefinedOrInternal;
-                $this->functions[$functionNumber]['file']       = $filename;
-                $this->functions[$functionNumber]['line']       = $lineNumber;
-                if ($params) {
-                    $this->functions[$functionNumber]['params'] = [$params];
-                }
+        switch ($parts[2]) { // $parts[2]
+            case '0':
+                // ENTRY
+                $data = array_combine($this->traceFormatFunctionEnterKeys, $parts);
 
-                // these are set later // Necessary to do this here?
-                $this->functions[$functionNumber]['return'] = '';
+                $this->functions[] = $data;
                 break;
-            case '1': // Function exit
-                $this->functions[$functionNumber]['time.exit'] = $timeEntered;
-                $this->functions[$functionNumber]['time.diff'] = $this->functions[$functionNumber]['time.exit'] - $this->functions[$functionNumber]['time.enter'];
+            case '1':
+                // EXIT
+                $data = array_combine($this->traceFormatFunctionExitKeys, $parts);
+
+                $this->functions[] = $data;
                 break;
-            case 'R'; // Function return
-                $this->functions[$functionNumber]['return'] = $functionName;
+            case 'R`':
+                // RETURN
+                $data = array_combine($this->traceFormatFunctionReturnKeys, $parts);
+
+                $this->functions[] = $data;
                 break;
         }
     }
@@ -110,56 +129,88 @@ class XdebugParser
 
     /**
      * @return string
-     * @todo Add background color for each new depth level
-     *
      */
-    public function getTraceHTML()
+    public function getTraceHTML() : string
     {
-        ob_start();
-
-        echo '<div class="f header">';
-        echo '<div class="func">Function Call</div>';
-        echo '<div class="data">';
-        echo '<span class="file">File:Line</span>';
-        echo '</div>';
-        echo '</div>';
-
-        $level           = 0;
-        $stripeClassName = '';
-        foreach ($this->functions as $func) {
-            // depth wrapper
-            if ($func['depth'] > $level) {
-                for ($i = $level; $i < $func['depth']; $i++) {
-                    echo '<div class="d">';
-                }
-            } else if ($func['depth'] < $level) {
-                for ($i = $func['depth']; $i < $level; $i++) {
-                    echo '</div>';
-                }
-            }
-            $level = $func['depth'];
-
-            echo '<div class="f ' . $stripeClassName . '">';
-            echo '<div class="func">';
-            echo '<span class="name ' . (($func['internal'] === "0") ? "internal" : "") . '">' . htmlspecialchars($func['name']) . '</span>';
-            echo '</div>';
-            echo '<div class="data">';
-            echo '<span class="file" title="' . htmlspecialchars($func['file'] . ':' . $func['line']) . '">' . htmlspecialchars(basename($func['file']) . ':' . $func['line']) . '</span>';
-            echo '</div>';
-            echo '</div>';
-
-            $stripeClassName = ($stripeClassName == '') ? 'stripe' : '';
+        $output = '';
+        foreach ($this->functions as $stackFrame) {
+            $output .= $this->renderFrame($stackFrame);
         }
 
-        if ($level > 0) {
-            for ($i = 0; $i < $level; $i++) {
-                echo '</div>';
-            }
+        return $output;
+    }
+
+    /**
+     * @param $frameData
+     *
+     * @return string
+     */
+    private function renderFrame($frameData) : string
+    {
+        $colour = $this->colours[(int)$frameData['level']];
+        $renderedFrame = '';
+        switch ($frameData['record_type']) {
+            case '0':
+                $renderedFrame .= '<!-- ENTER ' . $frameData['function_number'] . ' -->';
+                $renderedFrame .= '<div class="func" style="border: 1px solid ' . $colour . '; margin: 5px; padding: 5px;">' . $frameData['function_name'];
+                break;
+            case '1':
+                $renderedFrame .= '<!-- EXIT ' . $frameData['function_number'] . ' -->';
+                $renderedFrame .= '</div>';
+                break;
+            case 'R':
+                $renderedFrame .= '<!-- RETURN ' . $frameData['function_number'] . ' -->';
+                $renderedFrame .= '</div>';
+                break;
         }
 
-        $html = ob_get_contents();
-        ob_end_clean();
+        return $renderedFrame;
+    }
 
-        return $html;
+    /**
+     * @param $function
+     *
+     * @return string
+     */
+    private function getFilename($function) : string
+    {
+        $filename = basename($function['filename']);
+        if ($filename === 'Interceptor.php') {
+            $filenameParts     = explode('/', $function['filename']);
+            $interceptFilename = array_pop($filenameParts);
+            $nextPart          = array_pop($filenameParts);
+            $filename          = $nextPart . DIRECTORY_SEPARATOR . $interceptFilename;
+        }
+
+        return $filename;
+    }
+
+    /**
+     * @return array
+     */
+    private function initialiseRainbow() : array
+    {
+        $colours = [
+            'red',
+            'orange',
+            'yellow',
+            'green',
+            'blue',
+            'indigo',
+            'violet',
+            'cyan',
+            'magenta',
+            'teal',
+            'grey',
+        ];
+
+        $roygbiv = [];
+        foreach ($colours as $key => $colour) {
+            $roygbiv = $roygbiv + array_fill_keys(range($key, 90 + $key, 10), $colour);
+        }
+        ksort($roygbiv);
+        $this->colours = $roygbiv;
+
+        return $roygbiv;
     }
 }

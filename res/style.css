@@ -44,7 +44,7 @@ div.f.hide * {
     display: none;
 }
 
-div.f.highlight {
+div.f.mark {
     background-color: #ffeced;
 }
 

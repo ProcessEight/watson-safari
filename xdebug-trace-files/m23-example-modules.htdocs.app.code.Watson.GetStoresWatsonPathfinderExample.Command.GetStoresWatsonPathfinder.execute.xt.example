@@ -1,0 +1,347 @@
+Version: 2.6.1
+File format: 4
+TRACE START [2019-06-22 14:46:06]
+8	1226386	0	9.804944	38721688	Watson\GetStoresWatsonPathfinderExample\Command\GetStoresWatsonPathfinder->traceWrapper	1		/var/www/html/m2-research/m23-example-modules/htdocs/app/code/Watson/GetStoresWatsonPathfinderExample/Command/GetStoresWatsonPathfinder.php	65
+9	1226387	0	35.098651	38727744	Magento\Store\Model\StoreManager->getStores	1		/var/www/html/m2-research/m23-example-modules/htdocs/app/code/Watson/GetStoresWatsonPathfinderExample/Command/GetStoresWatsonPathfinder.php	80
+10	1226388	0	35.098884	38727744	Magento\Store\Model\StoreRepository->getList	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreManager.php	182
+11	1226389	0	35.098927	38727744	Magento\Store\Model\StoreRepository->getAppConfig	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	143
+12	1226390	0	35.098974	38727744	Magento\Framework\App\ObjectManager::getInstance	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	164
+12	1226390	1	35.099025	38727744
+12	1226391	0	35.099050	38727744	Magento\Framework\App\ObjectManager->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	164
+12	1226391	1	35.099137	38727744
+11	1226389	1	35.099161	38727744
+11	1226395	0	35.099179	38727744	Magento\Framework\App\Config->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	143
+13	1226397	0	35.099270	38727800	Magento\Framework\App\Config\ConfigSourceAggregated\Proxy->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Type/Scopes.php	63
+14	1226398	0	35.099300	38727800	Magento\Framework\App\Config\ConfigSourceAggregated\Proxy->_getSubject	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/Config/ConfigSourceAggregated/Proxy.php	95
+15	1226399	0	35.099331	38727800	Magento\Framework\App\ObjectManager->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/Config/ConfigSourceAggregated/Proxy.php	84
+15	1226399	1	35.099398	38727800
+14	1226398	1	35.099420	38727800
+14	1226403	0	35.099437	38727800	Magento\Framework\App\Config\ConfigSourceAggregated->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/Config/ConfigSourceAggregated/Proxy.php	95
+16	1226408	0	35.099536	38793288	Magento\Store\App\Config\Source\RuntimeConfigSource->canUseDatabase	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	55
+17	1226409	0	35.099566	38793288	Magento\Framework\App\DeploymentConfig->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	104
+17	1226409	1	35.099618	38793288
+16	1226408	1	35.099636	38793288
+16	1226412	0	35.099652	38793288	Magento\Store\App\Config\Source\RuntimeConfigSource->getEntities	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	57
+17	1226413	0	35.099685	38793288	Magento\Store\App\Config\Source\RuntimeConfigSource->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	86
+18	1226414	0	35.099714	38793288	Magento\Framework\App\ResourceConnection\Interceptor->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	72
+19	1226415	0	35.099745	38793288	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	22
+19	1226415	1	35.099849	38793288
+19	1226420	0	35.099871	38793288	Magento\Framework\App\ResourceConnection\Interceptor->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	24
+21	1226422	0	35.099944	38793288	Magento\Framework\App\ResourceConnection\Config\Proxy->_getSubject	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+21	1226422	1	35.099953	38793288
+21	1226423	0	35.099958	38793288	Magento\Framework\App\ResourceConnection\Config->getConnectionName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+21	1226423	1	35.099998	38793288
+21	1226430	0	35.100009	38793288	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	48
+21	1226430	1	35.100038	38793288
+21	1226435	0	35.100044	38793288	Magento\Framework\App\ResourceConnection\Interceptor->getConnectionByName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	50
+21	1226435	1	35.100062	38793288
+19	1226420	1	35.100070	38793288
+18	1226414	1	35.100074	38793288
+17	1226413	1	35.100080	38793288
+17	1226438	0	35.100085	38793288	Magento\Store\App\Config\Source\RuntimeConfigSource->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1226438	1	35.100092	38793288
+17	1226439	0	35.100097	38793288	Magento\Framework\DB\Adapter\Pdo\Mysql->select	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1226439	1	35.100126	38793416
+17	1226444	0	35.100132	38793416	Magento\Framework\App\ResourceConnection\Interceptor->getTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+18	1226445	0	35.100140	38793416	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	61
+18	1226445	1	35.100166	38793416
+18	1226450	0	35.100172	38793416	Magento\Framework\App\ResourceConnection\Interceptor->getTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	63
+20	1226453	0	35.100189	38793416	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	113
+20	1226453	1	35.100214	38793416
+20	1226458	0	35.100220	38793416	Magento\Framework\App\ResourceConnection\Interceptor->getMappedTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	115
+20	1226458	1	35.100229	38793416
+20	1226460	0	35.100237	38793416	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	165
+20	1226460	1	35.100262	38793416
+20	1226465	0	35.100268	38793416	Magento\Framework\App\ResourceConnection\Interceptor->getTablePrefix	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	167
+20	1226465	1	35.100286	38793416
+20	1226470	0	35.100294	38793416	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	22
+20	1226470	1	35.100319	38793416
+20	1226475	0	35.100324	38793416	Magento\Framework\App\ResourceConnection\Interceptor->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	24
+22	1226477	0	35.100334	38793416	Magento\Framework\App\ResourceConnection\Config\Proxy->_getSubject	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+22	1226477	1	35.100346	38793416
+22	1226478	0	35.100350	38793416	Magento\Framework\App\ResourceConnection\Config->getConnectionName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+22	1226478	1	35.100385	38793416
+22	1226485	0	35.100394	38793416	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	48
+22	1226485	1	35.100419	38793416
+22	1226490	0	35.100424	38793416	Magento\Framework\App\ResourceConnection\Interceptor->getConnectionByName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	50
+22	1226490	1	35.100440	38793416
+20	1226475	1	35.100448	38793416
+18	1226450	1	35.100467	38793416
+17	1226444	1	35.100474	38793416
+17	1226496	0	35.100479	38793416	Magento\Framework\DB\Select->from	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1226496	1	35.100595	38795640
+17	1226516	0	35.100600	38795640	Magento\Framework\DB\Adapter\Pdo\Mysql->fetchAll	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+23	1227369	0	35.104241	38862400	Magento\Framework\App\ObjectManager->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/DB/Logger/QuietFactory.php	43
+23	1227369	1	35.104509	38865128
+17	1226516	1	35.107531	38990208
+16	1226412	1	35.107554	38990208
+16	1227711	0	35.107563	38990584	Magento\Store\App\Config\Source\RuntimeConfigSource->getEntities	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	58
+17	1227712	0	35.107577	38990584	Magento\Store\App\Config\Source\RuntimeConfigSource->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	86
+17	1227712	1	35.107586	38990584
+17	1227713	0	35.107590	38990584	Magento\Store\App\Config\Source\RuntimeConfigSource->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1227713	1	35.107598	38990584
+17	1227714	0	35.107601	38990584	Magento\Framework\DB\Adapter\Pdo\Mysql->select	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1227714	1	35.107629	38990712
+17	1227719	0	35.107634	38990712	Magento\Framework\App\ResourceConnection\Interceptor->getTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+18	1227720	0	35.107643	38990712	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	61
+18	1227720	1	35.107675	38990712
+18	1227725	0	35.107681	38990712	Magento\Framework\App\ResourceConnection\Interceptor->getTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	63
+20	1227728	0	35.107699	38990712	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	113
+20	1227728	1	35.107725	38990712
+20	1227733	0	35.107731	38990712	Magento\Framework\App\ResourceConnection\Interceptor->getMappedTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	115
+20	1227733	1	35.107740	38990712
+20	1227735	0	35.107748	38990712	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	165
+20	1227735	1	35.107782	38990712
+20	1227740	0	35.107787	38990712	Magento\Framework\App\ResourceConnection\Interceptor->getTablePrefix	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	167
+20	1227740	1	35.107807	38990712
+20	1227745	0	35.107816	38990712	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	22
+20	1227745	1	35.107841	38990712
+20	1227750	0	35.107847	38990712	Magento\Framework\App\ResourceConnection\Interceptor->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	24
+22	1227752	0	35.107859	38990712	Magento\Framework\App\ResourceConnection\Config\Proxy->_getSubject	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+22	1227752	1	35.107867	38990712
+22	1227753	0	35.107871	38990712	Magento\Framework\App\ResourceConnection\Config->getConnectionName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+22	1227753	1	35.107910	38990712
+22	1227760	0	35.107933	38990712	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	48
+22	1227760	1	35.107962	38990712
+22	1227765	0	35.107968	38990712	Magento\Framework\App\ResourceConnection\Interceptor->getConnectionByName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	50
+22	1227765	1	35.107988	38990712
+20	1227750	1	35.107996	38990712
+18	1227725	1	35.108017	38990712
+17	1227719	1	35.108025	38990712
+17	1227771	0	35.108030	38990712	Magento\Framework\DB\Select->from	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1227771	1	35.108146	38992936
+17	1227791	0	35.108152	38992936	Magento\Framework\DB\Adapter\Pdo\Mysql->fetchAll	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1227791	1	35.108952	38992960
+16	1227711	1	35.108971	38992960
+16	1228015	0	35.108979	38992960	Magento\Store\App\Config\Source\RuntimeConfigSource->getEntities	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	59
+17	1228016	0	35.108993	38992960	Magento\Store\App\Config\Source\RuntimeConfigSource->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	86
+17	1228016	1	35.109003	38992960
+17	1228017	0	35.109007	38992960	Magento\Store\App\Config\Source\RuntimeConfigSource->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1228017	1	35.109015	38992960
+17	1228018	0	35.109019	38992960	Magento\Framework\DB\Adapter\Pdo\Mysql->select	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1228018	1	35.109047	38993088
+17	1228023	0	35.109052	38993088	Magento\Framework\App\ResourceConnection\Interceptor->getTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+18	1228024	0	35.109062	38993088	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	61
+18	1228024	1	35.109095	38993088
+18	1228029	0	35.109102	38993088	Magento\Framework\App\ResourceConnection\Interceptor->getTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	63
+20	1228032	0	35.109126	38993088	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	113
+20	1228032	1	35.109156	38993088
+20	1228037	0	35.109163	38993088	Magento\Framework\App\ResourceConnection\Interceptor->getMappedTableName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	115
+20	1228037	1	35.109173	38993088
+20	1228039	0	35.109181	38993088	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	165
+20	1228039	1	35.109210	38993088
+20	1228044	0	35.109216	38993088	Magento\Framework\App\ResourceConnection\Interceptor->getTablePrefix	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	167
+20	1228044	1	35.109236	38993088
+20	1228049	0	35.109245	38993088	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	22
+20	1228049	1	35.109273	38993088
+20	1228054	0	35.109279	38993088	Magento\Framework\App\ResourceConnection\Interceptor->getConnection	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	24
+22	1228056	0	35.109292	38993088	Magento\Framework\App\ResourceConnection\Config\Proxy->_getSubject	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+22	1228056	1	35.109301	38993088
+22	1228057	0	35.109305	38993088	Magento\Framework\App\ResourceConnection\Config->getConnectionName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Config/Proxy.php	95
+22	1228057	1	35.109345	38993088
+22	1228064	0	35.109356	38993088	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	48
+22	1228064	1	35.109385	38993088
+22	1228069	0	35.109391	38993088	Magento\Framework\App\ResourceConnection\Interceptor->getConnectionByName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/ResourceConnection/Interceptor.php	50
+22	1228069	1	35.109409	38993088
+20	1228054	1	35.109417	38993088
+18	1228029	1	35.109437	38993088
+17	1228023	1	35.109444	38993088
+17	1228075	0	35.109449	38993088	Magento\Framework\DB\Select->from	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1228075	1	35.109558	38995312
+17	1228095	0	35.109564	38995312	Magento\Framework\DB\Adapter\Pdo\Mysql->fetchAll	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/RuntimeConfigSource.php	87
+17	1228095	1	35.110361	38995448
+16	1228015	1	35.110375	38995448
+16	1228323	0	35.110395	38995824	Magento\Framework\App\DeploymentConfig->isAvailable	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Source/InitialConfigSource.php	68
+16	1228323	1	35.111489	38997768
+14	1226403	1	35.111505	38997392
+13	1226397	1	35.111515	38997392
+13	1228692	0	35.111521	38997392	Magento\Framework\DataObject->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Type/Scopes.php	63
+13	1228692	1	35.111533	38997392
+13	1228693	0	35.111539	38997392	explode	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Type/Scopes.php	66
+13	1228693	1	35.111546	38997768
+13	1228694	0	35.111558	38997768	Magento\Framework\DataObject->getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/App/Config/Type/Scopes.php	75
+13	1228694	1	35.111581	38997768
+11	1226395	1	35.111595	38997392
+11	1228697	0	35.111605	38997768	Magento\Store\Model\StoreFactory->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	146
+12	1228698	0	35.111616	38997768	Magento\Framework\App\ObjectManager->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/StoreFactory.php	43
+22	1228726	0	35.112887	39148688	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228727	0	35.112909	39148768	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228727	1	35.113599	39203792
+22	1228726	1	35.113611	39203712
+22	1228768	0	35.113625	39209648	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228769	0	35.113634	39209712	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228769	1	35.113756	39211688
+22	1228768	1	35.113765	39211624
+22	1228782	0	35.113771	39211640	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228783	0	35.113779	39211720	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228783	1	35.113883	39212904
+22	1228782	1	35.113892	39212824
+22	1228796	0	35.113897	39212824	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228797	0	35.113904	39212888	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	39
+23	1228797	1	35.114040	39218688
+22	1228796	1	35.114049	39218624
+21	1229562	0	35.118697	39649064	Magento\MediaStorage\Helper\File\Storage\Database->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-media-storage/Helper/File/Storage/Database.php	76
+21	1229562	1	35.118763	39649064
+21	1229834	0	35.119822	39665736	Magento\Framework\App\Http\Context\Interceptor->___init	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/Http/Context/Interceptor.php	13
+21	1229834	1	35.119877	39665736
+21	1229842	0	35.119884	39665736	Magento\Framework\App\Http\Context\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Framework/App/Http/Context/Interceptor.php	14
+21	1229842	1	35.119913	39665736
+16	1230312	0	35.121665	39685776	Magento\Store\Model\Store\Interceptor->___init	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	13
+16	1230312	1	35.121731	39685776
+16	1230320	0	35.121739	39685776	Magento\Store\Model\Store\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	14
+17	1230321	0	35.121768	39685776	Magento\Framework\App\ObjectManager::getInstance	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	402
+17	1230321	1	35.121779	39685776
+17	1230322	0	35.121783	39685776	Magento\Framework\App\ObjectManager->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	403
+17	1230322	1	35.121805	39685776
+17	1230326	0	35.121811	39685776	Magento\Store\Model\Store\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	411
+20	1230337	0	35.121862	39685776	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	48
+27	1230395	0	35.122149	39691640	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-catalog/Model/Indexer/Category/Flat/Plugin/StoreView.php	8
+28	1230396	0	35.122167	39691736	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-catalog/Model/Indexer/Category/Flat/Plugin/StoreView.php	8
+28	1230396	1	35.122334	39698120
+27	1230395	1	35.122344	39698024
+27	1230479	0	35.122698	39709160	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-catalog/Model/Indexer/Category/Product/Plugin/StoreView.php	11
+28	1230480	0	35.122716	39709256	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-catalog/Model/Indexer/Category/Product/Plugin/StoreView.php	11
+28	1230480	1	35.122890	39717432
+27	1230479	1	35.122901	39717336
+27	1230566	0	35.123287	39728304	spl_autoload_call	0		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-catalog-search/Model/Indexer/Fulltext/Plugin/Store/View.php	16
+28	1230567	0	35.123306	39728400	Composer\Autoload\ClassLoader->loadClass	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-catalog-search/Model/Indexer/Fulltext/Plugin/Store/View.php	16
+28	1230567	1	35.123454	39798552
+27	1230566	1	35.123464	39798456
+20	1230337	1	35.123523	39796936
+20	1230598	0	35.123531	39796936	Magento\Store\Model\ResourceModel\Store\Interceptor->getIdFieldName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	50
+20	1230598	1	35.123542	39796936
+20	1230601	0	35.123555	39796936	Magento\Store\Model\Store\Interceptor->_init	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	447
+22	1230605	0	35.123578	39797016	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	48
+22	1230605	1	35.123607	39797016
+22	1230609	0	35.123614	39797016	Magento\Store\Model\ResourceModel\Store\Interceptor->getIdFieldName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	50
+22	1230609	1	35.123623	39797016
+20	1230601	1	35.123629	39797016
+17	1230326	1	35.123639	39797016
+16	1230320	1	35.123647	39797016
+12	1228698	1	35.123673	39795680
+11	1228697	1	35.123681	39795304
+11	1230610	0	35.123687	39795304	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	148
+12	1230611	0	35.123697	39795304	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	35
+12	1230611	1	35.124591	39814144
+12	1230825	0	35.124603	39814144	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	37
+13	1230826	0	35.124614	39814144	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	516
+13	1230826	1	35.124625	39814144
+12	1230825	1	35.124631	39814144
+11	1230610	1	35.124635	39814144
+11	1230827	0	35.124641	39814520	Magento\Store\Model\Store\Interceptor->getId	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	149
+12	1230828	0	35.124651	39814520	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	191
+12	1230828	1	35.124680	39814520
+12	1230832	0	35.124687	39814520	Magento\Store\Model\Store\Interceptor->getId	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	193
+13	1230833	0	35.124701	39814520	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	778
+13	1230833	1	35.124711	39814520
+12	1230832	1	35.124716	39814520
+11	1230827	1	35.124720	39814520
+11	1230834	0	35.124726	39815272	Magento\Store\Model\StoreFactory->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	146
+12	1230835	0	35.124735	39815272	Magento\Framework\App\ObjectManager->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/StoreFactory.php	43
+16	1231165	0	35.125898	39818456	Magento\Store\Model\Store\Interceptor->___init	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	13
+16	1231165	1	35.125948	39818456
+16	1231173	0	35.125955	39818456	Magento\Store\Model\Store\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	14
+17	1231174	0	35.125976	39818456	Magento\Framework\App\ObjectManager::getInstance	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	402
+17	1231174	1	35.125986	39818456
+17	1231175	0	35.125991	39818456	Magento\Framework\App\ObjectManager->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	403
+17	1231175	1	35.126011	39818456
+17	1231179	0	35.126017	39818456	Magento\Store\Model\Store\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	411
+20	1231190	0	35.126060	39818456	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	48
+20	1231190	1	35.126091	39818456
+20	1231194	0	35.126097	39818456	Magento\Store\Model\ResourceModel\Store\Interceptor->getIdFieldName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	50
+20	1231194	1	35.126107	39818456
+20	1231197	0	35.126117	39818456	Magento\Store\Model\Store\Interceptor->_init	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	447
+22	1231201	0	35.126136	39818536	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	48
+22	1231201	1	35.126164	39818536
+22	1231205	0	35.126170	39818536	Magento\Store\Model\ResourceModel\Store\Interceptor->getIdFieldName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	50
+22	1231205	1	35.126179	39818536
+20	1231197	1	35.126185	39818536
+17	1231179	1	35.126194	39818536
+16	1231173	1	35.126202	39818536
+12	1230835	1	35.126226	39817080
+11	1230834	1	35.126233	39816704
+11	1231206	0	35.126238	39816704	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	148
+12	1231207	0	35.126247	39816704	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	35
+12	1231207	1	35.126274	39816704
+12	1231211	0	35.126280	39816704	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	37
+13	1231212	0	35.126288	39816704	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	516
+13	1231212	1	35.126297	39816704
+12	1231211	1	35.126302	39816704
+11	1231206	1	35.126306	39816704
+11	1231213	0	35.126315	39816704	Magento\Store\Model\Store\Interceptor->getId	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	149
+12	1231214	0	35.126324	39816704	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	191
+12	1231214	1	35.126350	39816704
+12	1231218	0	35.126356	39816704	Magento\Store\Model\Store\Interceptor->getId	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	193
+13	1231219	0	35.126363	39816704	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	778
+13	1231219	1	35.126372	39816704
+12	1231218	1	35.126377	39816704
+11	1231213	1	35.126381	39816704
+11	1231220	0	35.126387	39817080	Magento\Store\Model\StoreFactory->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	146
+12	1231221	0	35.126395	39817080	Magento\Framework\App\ObjectManager->create	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/StoreFactory.php	43
+16	1231551	0	35.127546	39820264	Magento\Store\Model\Store\Interceptor->___init	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	13
+16	1231551	1	35.127596	39820264
+16	1231559	0	35.127602	39820264	Magento\Store\Model\Store\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	14
+17	1231560	0	35.127623	39820264	Magento\Framework\App\ObjectManager::getInstance	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	402
+17	1231560	1	35.127633	39820264
+17	1231561	0	35.127637	39820264	Magento\Framework\App\ObjectManager->get	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	403
+17	1231561	1	35.127657	39820264
+17	1231565	0	35.127663	39820264	Magento\Store\Model\Store\Interceptor->__construct	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	411
+20	1231576	0	35.127705	39820264	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	48
+20	1231576	1	35.127735	39820264
+20	1231580	0	35.127741	39820264	Magento\Store\Model\ResourceModel\Store\Interceptor->getIdFieldName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	50
+20	1231580	1	35.127750	39820264
+20	1231583	0	35.127761	39820264	Magento\Store\Model\Store\Interceptor->_init	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	447
+22	1231587	0	35.127779	39820344	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	48
+22	1231587	1	35.127807	39820344
+22	1231591	0	35.127813	39820344	Magento\Store\Model\ResourceModel\Store\Interceptor->getIdFieldName	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/ResourceModel/Store/Interceptor.php	50
+22	1231591	1	35.127821	39820344
+20	1231583	1	35.127828	39820344
+17	1231565	1	35.127837	39820344
+16	1231559	1	35.127844	39820344
+12	1231221	1	35.127868	39818888
+11	1231220	1	35.127875	39818512
+11	1231592	0	35.127880	39818512	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	148
+12	1231593	0	35.127889	39818512	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	35
+12	1231593	1	35.127921	39818512
+12	1231597	0	35.127927	39818512	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	37
+13	1231598	0	35.127935	39818512	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	516
+13	1231598	1	35.127944	39818512
+12	1231597	1	35.127949	39818512
+11	1231592	1	35.127954	39818512
+11	1231599	0	35.127959	39818512	Magento\Store\Model\Store\Interceptor->getId	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreRepository.php	149
+12	1231600	0	35.127967	39818512	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	191
+12	1231600	1	35.127992	39818512
+12	1231604	0	35.127998	39818512	Magento\Store\Model\Store\Interceptor->getId	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	193
+13	1231605	0	35.128005	39818512	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	778
+13	1231605	1	35.128014	39818512
+12	1231604	1	35.128019	39818512
+11	1231599	1	35.128023	39818512
+10	1226388	1	35.128029	39818512
+10	1231606	0	35.128038	39818512	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreManager.php	187
+11	1231607	0	35.128046	39818512	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	35
+11	1231607	1	35.128072	39818512
+11	1231611	0	35.128078	39818512	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	37
+12	1231612	0	35.128085	39818512	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	516
+12	1231612	1	35.128094	39818512
+11	1231611	1	35.128099	39818512
+10	1231606	1	35.128103	39818512
+10	1231613	0	35.128108	39818888	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreManager.php	187
+11	1231614	0	35.128116	39818888	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	35
+11	1231614	1	35.128141	39818888
+11	1231618	0	35.128147	39818888	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	37
+12	1231619	0	35.128154	39818888	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	516
+12	1231619	1	35.128162	39818888
+11	1231618	1	35.128166	39818888
+10	1231613	1	35.128171	39818888
+10	1231620	0	35.128176	39818888	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/StoreManager.php	187
+11	1231621	0	35.128183	39818888	Magento\Framework\Interception\PluginList\PluginList->getNext	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	35
+11	1231621	1	35.128207	39818888
+11	1231625	0	35.128213	39818888	Magento\Store\Model\Store\Interceptor->getCode	1		/var/www/html/m2-research/m23-example-modules/htdocs/generated/code/Magento/Store/Model/Store/Interceptor.php	37
+12	1231626	0	35.128219	39818888	Magento\Store\Model\Store\Interceptor->_getData	1		/var/www/html/m2-research/m23-example-modules/htdocs/vendor/magento/module-store/Model/Store.php	516
+12	1231626	1	35.128228	39818888
+11	1231625	1	35.128235	39818888
+10	1231620	1	35.128240	39818888
+9	1226387	1	35.128245	39818888
+8	1226386	1	38.858433	39826360
+TRACE END   [2019-06-22 14:46:40]
+

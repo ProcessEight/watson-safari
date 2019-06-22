@@ -10,41 +10,49 @@ $dir = ini_get('xdebug.trace_output_dir') ?: '/var/www/html/watson/watson-pathfi
     <head>
         <title>Watson: Pathfinder</title>
         <link rel="stylesheet" href="res/style.css">
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script src="res/script.js"></script>
     </head>
     <body>
-        <p>Reading files from <code><?= htmlspecialchars($dir) ?></code></p>
-        <form method="post" class="load">
-            <p>
+        <div style="clear: both">
+            <form method="post" class="load">
                 <label for="file">File:</label>
                 <select name="file" id="file">
-                <?php
-                $files = glob("$dir/*");
-                foreach ($files as $file) :
-                    echo '<option value="' . htmlspecialchars($file) . '">' . htmlspecialchars(basename($file)) . '</option>';
-                endforeach;
-                ?>
+                    <?php
+                    $files = glob("$dir/*");
+                    foreach ($files as $file) :
+                        echo '<option value="' . htmlspecialchars($file) . '">' . htmlspecialchars(basename($file)) . '</option>';
+                    endforeach;
+                    ?>
                 </select>
-            </p>
-            <p>Options:</p>
-            <div>
-                <input type="checkbox" id="filter_php_core_functions" name="filter_php_core_functions">
-                <label for="filter_php_core_functions">Filter PHP core functions</label>
-            </div>
-            <div>
-                <input type="checkbox" id="horns" name="horns">
-                <label for="horns">Horns</label>
-            </div>
-            <p>
-                <input type="submit" name="submit">Load</input>
-            </p>
-        </form>
-        <?php
-        if (!empty($_REQUEST['file'])) :
-            require_once 'res/XdebugParser.php';
-            $parser = new XdebugParser($_REQUEST['file'] ?? null);
-            $parser->parse();
-            echo $parser->getTraceHTML();
-        endif;
-        ?>
+                <button type="submit">Load</button>
+                <br/>
+
+                <p>Files are read from <code>xdebug.trace_output_dir = <?php echo htmlspecialchars($dir) ?></code></p>
+                <p>Note that you may need to remove opening and closing lines from the tracefile, in order for the divs to be rendered correctly, especially if the tracefile starts with an EXIT (1) record type or ends with a ENTER (0) record type.</p>
+            </form>
+
+            <ul class="help">
+                <li>load a trace file from the dropdown</li>
+                <li>TODO: click a left margin to collapse a whole sub tree</li>
+                <li>TODO: click a function name to collapse all calls to the same function</li>
+                <li>TODO: click the parameter list to expand it</li>
+                <li>TODO: click the return list to expand it</li>
+            </ul>
+
+        </div>
+
+        <div class="options" style="clear: both;">
+            <!-- Opening function trace wrapper div -->
+            <?php
+            if (!empty($_REQUEST['file'])) :
+                require_once 'res/XdebugParser.php';
+                $parser = new XdebugParser($_REQUEST['file'] ?? null);
+                $parser->parse();
+                echo $parser->getTraceHTML();
+            endif;
+            ?>
+            <!-- Closing function trace wrapper div -->
+        </div>
     </body>
 </html>
